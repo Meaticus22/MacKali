@@ -12,13 +12,26 @@ def clear_screen():
 def display_banner():
     """Displays the banner for MacKali."""
     print(gear)
+    print(""" 
+___  ___           _   __      _ _ 
+|  \/  |          | | / /     | (_)
+| .  . | __ _  ___| |/ /  __ _| |_ 
+| |\/| |/ _` |/ __|    \ / _` | | |
+| |  | | (_| | (__| |\  \ (_| | | |
+\_|  |_/\__,_|\___\_| \_/\__,_|_|_|                                                                                                                                  
+    """)
     print("Welcome to MacKali!\n")
-
-def display_categories():
-    """Displays the available categories and tools."""
-    print("Select a category to install tools from:\n")
-    for i, category in enumerate(categories):
-        print(f"{i+1}. {category}")
+    print("Categories:")
+    print("1. Information Gathering")
+    print("2. Vulnerability Analysis")
+    print("3. Wireless Attacks")
+    print("4. Web Application Analysis")
+    print("5. Exploitation Tools")
+    print("6. Password Attacks")
+    print("7. Sniffing & Spoofing")
+    print("8. Maintaining Access")
+    print("9. Reverse Engineering")
+    print("10. Forensics Tools")
     print("0. Exit")
 
 def display_tools(category):
@@ -37,14 +50,24 @@ def main():
     clear_screen()
     display_banner()
     while True:
-        display_categories()
         choice = input("\nEnter your choice: ")
         if choice == '0':
             sys.exit()
-        elif choice.isdigit() and 1 <= int(choice) <= len(categories):
+        elif choice.isdigit() and 1 <= int(choice) <= 10:
             clear_screen()
             display_banner()
-            category = list(categories.keys())[int(choice)-1]
+            category = {
+                '1': 'Information Gathering',
+                '2': 'Vulnerability Analysis',
+                '3': 'Wireless Attacks',
+                '4': 'Web Application Analysis',
+                '5': 'Exploitation Tools',
+                '6': 'Password Attacks',
+                '7': 'Sniffing & Spoofing',
+                '8': 'Maintaining Access',
+                '9': 'Reverse Engineering',
+                '10': 'Forensics Tools'
+            }[choice]
             display_tools(category)
             while True:
                 choice = input("\nEnter your choice: ")
@@ -58,6 +81,8 @@ def main():
                     input(f"\n{tool} has been installed. Press Enter to continue...")
                     clear_screen()
                     display_banner()
+                else:
+                    print("Invalid choice. Please try again.")
 
 if __name__ == '__main__':
     main()
